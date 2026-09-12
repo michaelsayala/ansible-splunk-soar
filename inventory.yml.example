@@ -1,0 +1,15 @@
+all:
+  vars:
+    # SSH username used to connect to all Splunk servers
+    ansible_user: CHANGE_ME
+
+    # Path to the SSH private key on the Ansible control machine
+    ansible_ssh_private_key_file: CHANGE_ME
+
+  children:
+
+    soar:
+      hosts:
+        soar01:
+          ansible_host: CHANGE_ME_PUBLIC_IP
+          private_ip: CHANGE_ME_PRIVATE_IP

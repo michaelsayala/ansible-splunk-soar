@@ -1,0 +1,7 @@
+---
+- name: OS - Download Splunk SOAR installation package
+  ansible.builtin.get_url:
+    url: https://download.splunk.com/products/splunk_soar-unpriv/releases/{{ splunk_soar_version }}/linux/{{
+      splunk_soar_package }}
+    dest: "{{ splunk_soar_download_location }}/{{ splunk_soar_package }}"
+    mode: "0644"

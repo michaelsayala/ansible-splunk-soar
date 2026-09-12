@@ -1,0 +1,24 @@
+---
+- name: OS - Create Splunk SOAR system group
+  ansible.builtin.group:
+    name: '{{ splunk_soar_group }}'
+    state: present
+    system: true
+
+- name: OS - Create Splunk SOAR service user
+  ansible.builtin.user:
+    name: '{{ splunk_soar_user }}'
+    group: '{{ splunk_soar_group }}'
+    create_home: true
+    home: /home/{{ splunk_soar_user }}
+    shell: /bin/bash
+    system: true
+    state: present
+
+- name: OS - Create Splunk SOAR installation directory
+  ansible.builtin.file:
+    path: '{{ splunk_soar_home }}'
+    state: directory
+    owner: '{{ splunk_soar_user }}'
+    group: '{{ splunk_soar_group }}'
+    mode: '0755'

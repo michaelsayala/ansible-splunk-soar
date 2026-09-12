@@ -1,0 +1,11 @@
+---
+- name: OS - Install required system packages
+  ansible.builtin.yum:
+    name:
+      - net-tools
+      - wget
+      - ntpstat
+      - telnet
+      - python3
+      - python3-pexpect
+    state: present

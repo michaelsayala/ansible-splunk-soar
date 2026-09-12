@@ -1,0 +1,9 @@
+---
+- name: OS - Extract Splunk SOAR installation package
+  ansible.builtin.unarchive:
+    src: "{{ splunk_soar_download_location }}/{{ splunk_soar_package }}"
+    dest: "/opt"
+    remote_src: true
+    owner: "{{ splunk_soar_user }}"
+    group: "{{ splunk_soar_group }}"
+    creates: "/opt/splunk-soar/soar-install"

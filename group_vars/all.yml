@@ -1,0 +1,26 @@
+# =========================================================
+# Splunk SOAR Package Configuration
+# =========================================================
+
+# Splunk SOAR version to install
+splunk_soar_version: "8.7.0"
+
+# Splunk SOAR installation package filename
+splunk_soar_package: "splunk_soar-unpriv-8.7.0.232-281d350a-el9-x86_64.tgz"
+
+# Location where the Splunk SOAR package will be downloaded/staged
+splunk_soar_download_location: "/tmp"
+
+
+# =========================================================
+# Splunk SOAR Installation Configuration
+# =========================================================
+
+# Splunk SOAR installation directory
+splunk_soar_home: "/opt/phantom"
+
+# Linux user that owns the Splunk SOAR installation
+splunk_soar_user: "phantom"
+
+# Linux group that owns the Splunk SOAR installation
+splunk_soar_group: "phantom"

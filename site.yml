@@ -1,0 +1,9 @@
+---
+- name: Install Splunk SOAR
+  hosts: soar
+  become: true
+
+  roles:
+    - firewall
+    - splunk_soar_common
+    - splunk_soar_install
