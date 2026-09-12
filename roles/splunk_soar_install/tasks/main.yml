@@ -1,5 +1,5 @@
 ---
-- import_tasks: copy_package.yml
+- import_tasks: download_package.yml
 - import_tasks: extract_package.yml
 - import_tasks: prepare_system.yml
 - import_tasks: install_system.yml
