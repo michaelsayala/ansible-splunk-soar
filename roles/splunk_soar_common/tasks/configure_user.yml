@@ -11,7 +11,7 @@
     group: '{{ splunk_soar_group }}'
     create_home: true
     home: /home/{{ splunk_soar_user }}
-    shell: /bin/bash
+    shell: /sbin/nologin
     system: true
     state: present
 

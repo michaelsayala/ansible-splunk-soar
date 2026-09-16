@@ -1,0 +1,15 @@
+---
+- name: OS - Clean all YUM cached data
+  ansible.builtin.yum:
+    update_cache: true
+
+- name: OS - Upgrade all packages to the latest version
+  ansible.builtin.yum:
+    name: "*"
+    state: latest
+  register: update_result
+
+- name: OS - Display update summary
+  ansible.builtin.debug:
+    msg: "System update complete. Packages updated: {{ update_result.changes.updated | default([]) | length }}"
+  when: update_result.changed

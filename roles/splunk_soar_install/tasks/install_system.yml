@@ -1,23 +1,26 @@
 ---
 - name: OS - Set ownership of Splunk SOAR installation directory
   ansible.builtin.file:
-    path: /opt/phantom
+    path: "{{splunk_soar_home}}"
+    state: directory
     owner: "{{ splunk_soar_user }}"
     group: "{{ splunk_soar_group }}"
     recurse: true
 
 - name: OS - Set ownership of Splunk SOAR installation files
   ansible.builtin.file:
-    path: /opt/splunk-soar
+    path: "{{splunk_soar_install_dir}}"
+    state: directory
     owner: "{{ splunk_soar_user }}"
     group: "{{ splunk_soar_group }}"
     recurse: true
     
 - name: Splunk SOAR - Run installation script
+  become: true
+  become_user: "{{ splunk_soar_user }}"
   ansible.builtin.shell:
     cmd: |
       yes y | ./soar-install --splunk-soar-home "{{ splunk_soar_home }}"
-    chdir: "/opt/splunk-soar/"
-    creates: "/opt/phantom/bin"
-  become_user: "{{ splunk_soar_user }}"
+    chdir: "{{splunk_soar_install_dir}}"
+    creates: "{{splunk_soar_home}}/bin"
   when: soar_prepare_result.rc == 0

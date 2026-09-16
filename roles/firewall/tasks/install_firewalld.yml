@@ -1,5 +1,5 @@
 ---
-- name: OS - Install firewalld package
+- name: Firewall - Install firewalld package
   ansible.builtin.package:
     name: firewalld
     state: present

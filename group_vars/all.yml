@@ -18,6 +18,7 @@ splunk_soar_download_location: "/tmp"
 
 # Splunk SOAR installation directory
 splunk_soar_home: "/opt/phantom"
+splunk_soar_install_dir: "/opt/splunk-soar"
 
 # Linux user that owns the Splunk SOAR installation
 splunk_soar_user: "phantom"

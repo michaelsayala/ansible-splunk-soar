@@ -6,4 +6,4 @@
     remote_src: true
     owner: "{{ splunk_soar_user }}"
     group: "{{ splunk_soar_group }}"
-    creates: "/opt/splunk-soar/soar-install"
+    creates: "{{splunk_soar_install_dir}}/soar-install"

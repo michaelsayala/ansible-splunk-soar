@@ -1,12 +1,8 @@
-- name: OS - Ensure temporary directory exists
-  ansible.builtin.file:
-    path: /tmp
-    state: directory
-    owner: root
-    group: root
-
+---
 - name: OS - Copy Splunk SOAR installation package
   ansible.builtin.copy:
     src: files/{{ splunk_soar_package }}
-    dest: /tmp/{{ splunk_soar_package }}
-    mode: preserve
+    dest: "{{splunk_soar_download_location}}/{{ splunk_soar_package }}"
+    owner: "{{ splunk_soar_user }}"
+    group: "{{ splunk_soar_group }}"
+    mode: "0644"

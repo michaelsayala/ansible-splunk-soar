@@ -1,20 +1,23 @@
 ---
 - name: Splunk SOAR - Verify system preparation
   ansible.builtin.stat:
-    path: "/opt/splunk-soar/soar-prepare-system"
+    path: "{{splunk_soar_install_dir}}/soar-prepare-system"
   register: soar_prepare_script
 
 - name: Splunk SOAR - Run system preparation
   ansible.builtin.expect:
     command: "./soar-prepare-system --splunk-soar-home {{ splunk_soar_home }}"
-    chdir: "/opt/splunk-soar"
+    chdir: "{{splunk_soar_install_dir}}"
+    timeout: 900
     responses:
       'Do you wish to proceed.*:': 'y'
+      'Download packages available in the default CentOS and RHEL repos:*': 'y'
       'Do you want to run this step.*:': 'n'
       'Enable the sysstat service.*\nDo you want to run this step.*:': 'y'
       'Ensure that the required ports are opened in firewalld.*\nDo you want to run this step.*:': 'y'
       'Make Splunk SOAR available on the default HTTPS port.*\nDo you want to run this step.*:': 'y'
       'Set system resource limits for Splunk SOAR user.*': 'y'
+    creates: "{{splunk_soar_home}}/bin"
   become: true
   when: soar_prepare_script.stat.exists
   register: soar_prepare_result
